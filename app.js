@@ -1,35 +1,9 @@
 // making the timer
-var minutesDisplay = document.getElementById('minutes');
-var secondsDisplay = document.getElementById('seconds');
-
-
-
-var timer = 90;
-var minutes = 0;
-var seconds = 0;
-
-document.getElementById('start-game').addEventListener('click', function startTimer() {
-  minutes = parseInt(timer / 60);
-  seconds = parseInt (timer % 60);
-  
-  minutesDisplay.innerHTML = minutes.toString();
-  secondsDisplay.innerHTML = seconds.toString();
-  timer --;
-  setTimeout(function() {
-    startTimer();
-  }, 1000);
-
-  if (minutes.length < 2) {
-    minutes = '0' + minutes;
-  }
-  if (seconds.length < 2) {
-    seconds = '0' + seconds;
-  }
-});
-
-
-// making the questions
-var questions = [
+let minutesDisplay = document.getElementById('minutes');
+let  secondsDisplay = document.getElementById('seconds');
+let startButton = document.getElementById('start-game');
+let timer = 90;
+const questions = [
   {
     title: "1Commonly used data types DO NOT include:",
     choices: ["strings", "booleans", "alerts", "numbers"],
@@ -56,4 +30,62 @@ var questions = [
     answer: "alerts"
   },
 ];
+
+let newGame = document.getElementById('questions');
+
+
+startButton.addEventListener('click', function playGame(){
+  startTimer();
+  newGame.hidden = false;
+  startButton.hidden = true;
+  let activeQuestion = 0;
+
+
+
+
+
+});
+
+
+function startTimer() {
+  minutes = parseInt(timer / 60);
+  console.log(minutes);
+  seconds = parseInt (timer % 60);
+
+  minutesDisplay.innerText = '0' + minutes +':'; 
+
+  if (seconds < 10) {
+    seconds = '0' + seconds;
+  }
+
+  secondsDisplay.innerText = seconds;
+  timer --;
+
+  setTimeout(function() {
+    startTimer();
+  }, 1000);
+
+
+
+
+  // if (timer === 0) {
+  //   alert('game over man!');
+  //   timer = 90;
+  // }
+  // return minutes + ':' + seconds;
+
+};
+
+
+
+
+
+
+
+
+
+
+
+// making the questions
+
   
