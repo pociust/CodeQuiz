@@ -1,4 +1,5 @@
-// making the timer
+// set the variables
+
 let minutesDisplay = document.getElementById('minutes');
 let  secondsDisplay = document.getElementById('seconds');
 let startButton = document.getElementById('start-game');
@@ -10,11 +11,55 @@ let choiceC = document.getElementById('choice-c');
 let choiceD = document.getElementById('choice-d');
 let theQuestion = document.getElementById('the-question');
 let newGame = document.getElementById('questions');
+let highScore = document.getElementById('high-score');
+let clock = document.getElementById('start-timer');
+// making the questions
+
 const questions = [
   {
     title: "1Commonly used data types DO NOT include:",
     choices: ["strings", "booleans", "alerts", "numbers"],
     answer: "strings"
+  },
+  {
+    title: "2Commonly used data types DO NOT include:",
+    choices: ["strings", "booleans", "alerts", "numbers"],
+    answer: "alerts"
+  },
+  {
+    title: "3Commonly used data types DO NOT include:",
+    choices: ["strings", "booleans", "alerts", "numbers"],
+    answer: "alerts"
+  },
+  {
+    title: "4Commonly used data types DO NOT include:",
+    choices: ["strings", "booleans", "alerts", "numbers"],
+    answer: "string"
+  },
+  {
+    title: "5Commonly used data types DO NOT include:",
+    choices: ["strings", "booleans", "alerts", "numbers"],
+    answer: "number"
+  },
+  {
+    title: "2Commonly used data types DO NOT include:",
+    choices: ["strings", "booleans", "alerts", "numbers"],
+    answer: "alerts"
+  },
+  {
+    title: "3Commonly used data types DO NOT include:",
+    choices: ["strings", "booleans", "alerts", "numbers"],
+    answer: "alerts"
+  },
+  {
+    title: "4Commonly used data types DO NOT include:",
+    choices: ["strings", "booleans", "alerts", "numbers"],
+    answer: "string"
+  },
+  {
+    title: "5Commonly used data types DO NOT include:",
+    choices: ["strings", "booleans", "alerts", "numbers"],
+    answer: "number"
   },
   {
     title: "2Commonly used data types DO NOT include:",
@@ -46,37 +91,24 @@ function swapQuestion() {
   choiceC.innerText = `C: ${questions[activeQuestion].choices[2]}`;
   choiceD.innerText = `D: ${questions[activeQuestion].choices[3]}`;
 };
-
+let score = 0;
 function checkAnswer(event) {
   if (event.target.innerText.substr(3) === questions[activeQuestion].answer) {
-    console.log('you got it partner!')
+    score++;
     
   } else {
-    console.log('you suck')
+    score--;
   }
   swapQuestion()
 };
+
 choiceA.addEventListener('click', function(){ checkAnswer(event)});
 choiceB.addEventListener('click', function(){ checkAnswer(event)});
 choiceC.addEventListener('click', function(){ checkAnswer(event)});
 choiceD.addEventListener('click', function(){ checkAnswer(event)});
 
 
-
-
-startButton.addEventListener('click', function playGame(){
-  startTimer();
-  newGame.hidden = false;
-  startButton.hidden = true;
-  activeQuestion = -1;
-  swapQuestion();
-
-
-
-
-
-});
-
+// making the timer
 
 function startTimer() {
   minutes = parseInt(timer / 60);
@@ -94,16 +126,35 @@ function startTimer() {
   setTimeout(function() {
     startTimer();
   }, 1000);
-
-
-  // if (timer === 0) {
+   // if (timer === 0) {
   //   alert('game over man!');
   //   timer = 90;
   // }
-  // return minutes + ':' + seconds;
 
 };
 
+startButton.addEventListener('click', function playGame(){
+  startTimer();
+  newGame.hidden = false;
+  startButton.hidden = true;
+  activeQuestion = -1;
+  swapQuestion();
+});
+
+//high score button
+highScore.addEventListener('click', function scoreBoard (){
+  newGame.hidden = true;
+  startButton.hidden = true;
+  clock.hidden = true;
+  highScore.hidden = true;
+
+
+
+});
+
+
+
+ 
 
 
 
@@ -114,6 +165,7 @@ function startTimer() {
 
 
 
-// making the questions
+
+
 
   

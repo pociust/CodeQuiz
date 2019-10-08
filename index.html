@@ -13,17 +13,19 @@
     </div>
     <div class="frow justify-between">
       <div class="high-score">
-        <button id="high-score">Checkout previous high scores!</button>
+        <button class="high-score button-none" id="high-score">Checkout previous high scores!</button>
       </div>
-      <div class="frow start-time">
+      <div id="start-timer" class="frow start-time">
         <div id="minutes">00:</div>
         <div id="seconds">00</div>
       </div>
     </div>
     <div class="frow">
+      <div id="local-scores">
+        <ul id="gamer-scores"></ul>
+      </div>
       <div  id="questions" hidden>
-        <div id="the-question">
-        </div>
+        <div id="the-question"></div>
         <button id="choice-a" class="m-10"></button>
         <button id="choice-b"></button>
         <button id="choice-c"></button>
