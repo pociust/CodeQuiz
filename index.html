@@ -9,31 +9,31 @@
   </head>
   <body>
     <div class="frow">
-      <h1 class="frow-center main-title">Welcome to The Quiz Game!</h1>
+      <h1 class="main-title">Welcome to The Quiz Game!</h1>
     </div>
-    <div class="frow justify-between">
-      <div class="high-score">
-        <button class="high-score button-none" id="high-score">Checkout previous high scores!</button>
-      </div>
+    <div class="frow row-end stage-2" hidden>
       <div id="start-timer" class="frow start-time">
         <div id="minutes">00:</div>
         <div id="seconds">00</div>
       </div>
     </div>
     <div class="frow">
-      <div id="local-scores">
-        <ul id="gamer-scores"></ul>
-      </div>
-      <div  id="questions" hidden>
+      <div  id="questions" class="stage-2" hidden>
         <div id="the-question"></div>
         <button id="choice-a" class="m-10"></button>
-        <button id="choice-b"></button>
-        <button id="choice-c"></button>
-        <button id="choice-d"></button>
+        <button id="choice-b" class="m-10"></button>
+        <button id="choice-c" class="m-10"></button>
+        <button id="choice-d" class="m-10"></button>
       </div>
-      <div id="main-content" class="main-content">
-        <button id="start-game">Click here to start the game!</button>
-      </div>
+    </div>
+    <div id="user-score" class="stage-3 text-center" hidden>
+    </div>
+    <div class="frow">
+      <button id="start-game" class="stage-1">Click here to start the game!</button>
+      <button id="high-score" class="stage-3" hidden>Checkout previous high scores!</button>
+    </div>
+    <div id="local-scores" class="stage-4" hidden>
+      <ul id="gamer-scores"></ul>
     </div>
     <script src="./app.js"></script>
   </body>
