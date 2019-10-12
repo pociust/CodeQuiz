@@ -26,14 +26,22 @@
         <button id="choice-d" class="m-10"></button>
       </div>
     </div>
-    <div id="user-score" class="stage-3 text-center" hidden>
+    <div class="frow">
+      <button id="start-game" class="stage-1 m-10">Click here to start the game!</button>
+      <button id="high-score" class="stage-3 m-10" hidden>Submit your score!</button>
+    </div>
+    <div class="frow nowrap">
+      <label class="stage-3 row-start input-name" hidden>
+        <span class="shrink-0 ">User Name:</span> 
+        <input type="text" id="user-input" placeholder="xXSniperxX">
+      </label>
+      <div id="user-score" class="stage-3 text-center shrink-0" hidden>
+      </div>
     </div>
     <div class="frow">
-      <button id="start-game" class="stage-1">Click here to start the game!</button>
-      <button id="high-score" class="stage-3" hidden>Checkout previous high scores!</button>
-    </div>
-    <div id="local-scores" class="stage-4" hidden>
-      <ul id="gamer-scores"></ul>
+      <div id="local-scores" class="stage-4" hidden>
+        <ul id="gamer-scores"></ul>
+      </div>
     </div>
     <script src="./app.js"></script>
   </body>

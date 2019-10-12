@@ -17,6 +17,10 @@ body {
   width: 500px;
 }
 
+.input-name {
+  max-width: 200px;
+}
+
 #final-score {
   margin-top: 25px;
 }
