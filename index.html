@@ -31,16 +31,18 @@
       <button id="high-score" class="stage-3 m-10" hidden>Submit your score!</button>
     </div>
     <div class="frow nowrap">
-      <label class="stage-3 row-start input-name" hidden>
-        <span class="shrink-0 ">User Name:</span> 
-        <input type="text" id="user-input" placeholder="xXSniperxX">
-      </label>
-      <div id="user-score" class="stage-3 text-center shrink-0" hidden>
+      <div id="score-local">  
+        <label class="stage-3 row-start input-name" hidden>
+          <span class="shrink-0 ">User Name:</span> 
+          <input type="text" id="user-name" placeholder="xXSniperxX">
+        </label>
+        <div id="user-score" class="stage-3 text-center shrink-0" hidden>
+        </div>
       </div>
     </div>
     <div class="frow">
       <div id="local-scores" class="stage-4" hidden>
-        <ul id="gamer-scores"></ul>
+        <ul id="gamer-scores" class="stage-4" hidden></ul>
       </div>
     </div>
     <script src="./app.js"></script>
