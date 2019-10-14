@@ -34,22 +34,19 @@ const questions = [
     answer: `206`
   },
   {
-    title: `Which famous person was the first to have a star laid on the "Hollywood Walk of
-    Fame"?:`,
-    choices: [`Elizabeth Taylor`, `Charlie Chaplin`, `Stanley Kramer`, `Burt Lancaster`],
-    answer: `Stanley Kramer`
+    title: `When talking about a location on a boat: "Port" refers to what?:`,
+    choices: [`On deck`, `Left`, `Right`, `In the back`],
+    answer: `Left`
   },
   {
-    title: `Which famous person was the first to have a star laid on the "Hollywood Walk of
-    Fame"?:`,
-    choices: [`Elizabeth Taylor`, `Charlie Chaplin`, `Stanley Kramer`, `Burt Lancaster`],
-    answer: `Stanley Kramer`
+    title: `How many stripes does the flag of the United States have?:`,
+    choices: [`50`, `13`, `14`, `9`],
+    answer: `13`
   },
   {
-    title: `Which famous person was the first to have a star laid on the "Hollywood Walk of
-    Fame"?:`,
-    choices: [`Elizabeth Taylor`, `Charlie Chaplin`, `Stanley Kramer`, `Burt Lancaster`],
-    answer: `Stanley Kramer`
+    title: `In what year did WWI begin?:`,
+    choices: [`1941`, `1919`, `1900`, `1914`],
+    answer: `1914`
   },
 ];
 let minutesDisplay = document.getElementById('minutes');
@@ -65,55 +62,58 @@ let userScore = document.getElementById('user-score');
 let gameScore = document.getElementById('gamer-scores');
 let finalQuestion = questions.length - 1;
 let userName = document.getElementById('user-name');
-let scoreHistory = [];
 let score = 0;
 let totalScore = 0;
 let newTimeOut = 0;
-// making the questions
 
+//reset function
+function reset() {
+  score = 0;
+ totalScore = 0;
+ newTimeOut = 0;
+};
 
+//timer
 function startTimer() {
-// if (timerStart === true)
   newTimeOut = setInterval(
   function () {
     minutes = parseInt(timer / 60);
     seconds = parseInt (timer % 60);
-
     minutesDisplay.innerText = '0' + minutes +':'; 
-
     if (seconds < 10) {
       seconds = '0' + seconds;
     };
-
     secondsDisplay.innerText = seconds;
     timer --;
-
     if (timer <= 0) {
       clearInterval(newTimeOut);
       showScore();
     }
-    
-    console.log(timer);
   }, 1000);
 };
 
-function toggleHidden(className) {
+//hide toggler
+function isVisible(className, visible) {
   var elements = document.getElementsByClassName(className);
   for (var i = 0; i < elements.length; i++) {
-    elements[i].hidden = !elements[i].hidden;
+    if (visible){
+    elements[i].hidden = false;
+    } else {
+      elements[i].hidden = true;
+    }
   }
 };
 
-
+//calculates total score
 function showScore (){
-  toggleHidden('stage-1');
-  toggleHidden('stage-2');
-  toggleHidden('stage-3');
+  isVisible('stage-1', true);
+  isVisible('stage-2', false);
+  isVisible('stage-3', true);
   totalScore = score + timer;
   userScore.innerText = `Final Score: ${totalScore}`;
-  // scoreBoard();
   };
 
+  //function to switch questions
 function swapQuestion() {
   activeQuestion = activeQuestion + 1;
   theQuestion.innerText = `${activeQuestion + 1}. ${questions[activeQuestion].title}`;
@@ -121,27 +121,27 @@ function swapQuestion() {
   choiceB.innerText = `B: ${questions[activeQuestion].choices[1]}`;
   choiceC.innerText = `C: ${questions[activeQuestion].choices[2]}`;
   choiceD.innerText = `D: ${questions[activeQuestion].choices[3]}`;
+  console.log(score);
 };
+
+//check answers
 function checkAnswer(event) {
-  
   if (event.target.innerText.substr(3) === questions[activeQuestion].answer) {
     score = score + 1;
-    
   } else {
     score = score - 5;
   }
-  console.log(score);
   if (activeQuestion < finalQuestion) {
     swapQuestion();
   } else {
     clearInterval(newTimeOut);
     showScore();
-    console.log('total' , totalScore);
 }
-
-event.target.blur();
+  event.target.blur();
 
 };
+
+//click answers 
 
 choiceA.addEventListener('click', function(){ checkAnswer(event)});
 choiceB.addEventListener('click', function(){ checkAnswer(event)});
@@ -149,37 +149,39 @@ choiceC.addEventListener('click', function(){ checkAnswer(event)});
 choiceD.addEventListener('click', function(){ checkAnswer(event)});
 
 
+//creating the scoreboard
 function scoreBoard(previousScore) {
-  toggleHidden('stage-3');
+  isVisible('stage-3', false);
+  gameScore.innerHTML = ''
   for (i=0; i < previousScore.length; i++) {
-    scoreHistory = previousScore[i];
     let li = document.createElement('li');
-    toggleHidden('stage-4');
     let gamerTags = previousScore[i].username;
     let gamerPoints = previousScore[i].totalScore;
     li.textContent = `${gamerTags} total score ${gamerPoints}`;
-    console.log(previousScore);
     gameScore.appendChild(li);
   } 
+  isVisible('stage-4', true);
+
 };
 
-
+  
+//start game
 
 document.getElementById('start-game').addEventListener('click', function playGame(){
- 
+  reset();
   timer = 89;
   minutesDisplay.innerText = '01:';
   secondsDisplay.innerText = '30';
   startTimer();
-  toggleHidden('stage-2');
-  toggleHidden('stage-1');
+  isVisible('stage-2', true);
+  isVisible('stage-1', false);
   activeQuestion = -1;
   swapQuestion();
-  if (toggleHidden('stage-4' === false)){
-    toggleHidden('stage-4');
-    };
+  isVisible('stage-4', false);
+  isVisible('stage-0', false);
 });
   
+//go to high scores
 document.getElementById('high-score').addEventListener('click', function () {
   let newName = userName.value;
   let newScore = {'username': newName, 'totalScore': totalScore};
@@ -192,4 +194,3 @@ document.getElementById('high-score').addEventListener('click', function () {
   localStorage.setItem("scoreboard", JSON.stringify(previousScore));
   scoreBoard(previousScore);  
 });
-

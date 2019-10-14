@@ -3,7 +3,7 @@ body {
 }
 
 .main-title {
-  margin-top: 25px;
+  margin: 25px;
 }
 
 .start-time {
@@ -30,4 +30,7 @@ body {
 }
 #high-score:hover {
   background-color: blueviolet;
+}
+ul {
+  list-style-type: none;
 }
